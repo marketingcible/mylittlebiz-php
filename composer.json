@@ -1,0 +1,25 @@
+{
+    "name": "mylittlebiz/api",
+    "description": "PHP Library for MyLittleBiz and MTarget Company",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "kahlan/kahlan": "^3.1"
+    },
+    "authors": [
+        {
+            "name": "ImTech",
+            "email": "im-tech@mtarget.fr"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "MyLittleBiz": "src/"
+        }
+    },
+    "scripts" : {
+        "test" : "kahlan --src=src --spec=tests --coverage=2"
+    }
+}
