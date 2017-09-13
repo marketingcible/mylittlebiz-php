@@ -105,10 +105,5 @@ class Client
         }
 
         return json_decode($this->request->getBody()->getContents(), 1);
-        // // 200
-        // echo $res->getHeaderLine('content-type');
-        // // 'application/json; charset=utf8'
-        // echo $res->getBody();
-        // // '{"id": 1420053, "name": "guzzle", ...}'
     }
 }
