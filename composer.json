@@ -1,6 +1,6 @@
 {
     "name": "mylittlebiz/api",
-    "description": "PHP Library for MyLittleBiz and MTarget Company",
+    "description": "PHP Library for MyLittleBiz, an mTarget Company. Designed to launch SMS campaigns.",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "~6.0"

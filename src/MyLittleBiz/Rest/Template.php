@@ -23,7 +23,7 @@ class Template
      * @param  {int} $objectifId    The template group identifier
      * @return {json}
      */
-    public function fetch(int $objectifId)
+    public function fetch($objectifId)
     {
         return $this->Client->request('GET', 'objectifs/{$objectifId}/models');
     }
@@ -36,7 +36,7 @@ class Template
      * @param  {int} int Template identifier
      * @return {json}
      */
-    public function search(int $id)
+    public function search($id)
     {
         return $this->Client->request('GET', 'models/{$id}');
     }
@@ -53,7 +53,7 @@ class Template
      * @param  {Boolean} [$editable=false] Is template editable
      * @return {json}
      */
-    public function createSms(int $objectifId, $title, $sender, $content, $editable = false)
+    public function createSms($objectifId, $title, $sender, $content, $editable = false)
     {
         return $this->Client->request('POST', 'objectifs/{$objectifId}/models', [], [
                 $title => $title,
@@ -76,7 +76,7 @@ class Template
      * @param  {string}  $analytic     Google analytic code
      * @return {json}
      */
-    public function createEmail(int $objectifId, $subject, $from, $sender, $content, $analytic = null)
+    public function createEmail($objectifId, $subject, $from, $sender, $content, $analytic = null)
     {
         return $this->Client->request('POST', 'objectifs/{$objectifId}/models', [], [
                 $subject => $subject,
@@ -98,7 +98,7 @@ class Template
      * @param  {Boolean} [$editable=false] Is template editable
      * @return {json}
      */
-    public function modifySms(int $id, $title, $sender, $content, $editable = false)
+    public function modifySms($id, $title, $sender, $content, $editable = false)
     {
         return $this->Client->request('PUT', 'models/{$id}/models', [], [
                 $title => $title,
@@ -120,7 +120,7 @@ class Template
      * @param  {string}  $analytic     Google analytic code
      * @return {json}
      */
-    public function modifyEmail(int $objectifId, $subject, $from, $sender, $content, $analytic = null)
+    public function modifyEmail($objectifId, $subject, $from, $sender, $content, $analytic = null)
     {
         return $this->Client->request('PUT', 'models/{$id}/models', [], [
                 $subject => $subject,
@@ -138,7 +138,7 @@ class Template
      * @param  {int} $id The template identifier
      * @return {json}
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         return $this->Client->request('DELETE', 'models/{$id}');
     }

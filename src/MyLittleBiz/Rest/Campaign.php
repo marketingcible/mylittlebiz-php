@@ -44,7 +44,7 @@ class Campaign
      *
      * @return {json}
      */
-    public function launchSmsToGroups(int $modelId, $name, array $groups, $out_of_offers)
+    public function launchSmsToGroups($modelId, $name, array $groups, $out_of_offers)
     {
         return $this->Client->request('POST', 'campaigns/sms/{$modelId}', [],
             [
@@ -66,7 +66,7 @@ class Campaign
      *
      * @return {json}
      */
-    public function launchSmsToNumbers(int $modelId, $name, array $numbers, $out_of_offers)
+    public function launchSmsToNumbers($modelId, $name, array $numbers, $out_of_offers)
     {
         return $this->Client->request('POST', 'campaigns/sms/{$modelId}', [],
             [
@@ -89,7 +89,7 @@ class Campaign
      *
      * @return {json}
      */
-    public function scheduleSmsToGroups(int $modelId, $name, array $groups, $out_of_offers, $send_date)
+    public function scheduleSmsToGroups($modelId, $name, array $groups, $out_of_offers, $send_date)
     {
         return $this->Client->request('POST', 'campaigns/sms/{$modelId}', [],
             [
@@ -112,7 +112,7 @@ class Campaign
      *
      * @return {json}
      */
-    public function scheduleSmsToNumbers(int $modelId, $name, array $numbers, $out_of_offers, $send_date)
+    public function scheduleSmsToNumbers($modelId, $name, array $numbers, $out_of_offers, $send_date)
     {
         return $this->Client->request('POST', 'campaigns/sms/{$modelId}', [],
             [
@@ -138,7 +138,7 @@ class Campaign
      *
      * @return {json}
      */
-    public function scheduleEmailToGroups(int $modelId, $name, array $groups, $out_of_offers, $send_date, $track_clics = 0, array $attachments = [])
+    public function scheduleEmailToGroups($modelId, $name, array $groups, $out_of_offers, $send_date, $track_clics = 0, array $attachments = [])
     {
         return $this->Client->request('POST', 'campaigns/email/{$modelId}', [],
             [
@@ -157,7 +157,7 @@ class Campaign
      * @param  {int} $id Campaign identifier
      * @return {json}
      */
-    public function statistics(int $id)
+    public function statistics($id)
     {
         return $this->Client->request('GET', 'campaigns/{$id}');
     }
@@ -169,7 +169,7 @@ class Campaign
      * @param  {int} $id Campaign identifier
      * @return {json}
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         return $this->Client->request('DELETE', 'campaigns/{$id}');
     }

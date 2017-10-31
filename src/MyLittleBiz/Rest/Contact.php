@@ -24,9 +24,38 @@ class Contact
      * @param  {int} [$from=null] Number of contacts to skip
      * @return {json}
      */
-    public function fetch(int $groupId, int $from = 0)
+    public function fetch($groupId, $from = 0, $fullData = true)
     {
-        return $this->Client->request('GET', "groups/{$groupId}/contacts", ['from' => $from]);
+        $params = (!empty($from)) ? ['from' => (int) $from] : [];
+
+        $contacts = $this->Client->request('GET', "groups/{$groupId}/contacts", $params);
+
+        if (!$fullData) {
+            foreach ($contacts['data'] as $kc => $contact) {
+                $contacts['data'][$kc] = array_intersect_key($contact, array_flip(['id_user', 'fnamn', 'enamn', 'salutation', 'epost', 'mob', 'state']));
+            }
+        }
+
+        return $contacts;
+    }
+
+    /**
+     * Récupère tous les contacts de tous les groupes
+     */
+    public function listAll($fullData = true)
+    {
+        $contacts = [];
+
+        $groups = $this->Client->ContactGroup()->fetch();
+
+        foreach ($groups['data'] as $group) {
+            foreach ($this->fetch($group['id'], 0, $fullData)['data'] as $contact) {
+                $contact['group'] = $group;
+                $contacts[] = $contact;
+            }
+        }
+
+        return $contacts;
     }
 
     /**
@@ -36,7 +65,7 @@ class Contact
      * @param  {int} int Contact identifier
      * @return {json}
      */
-    public function search(int $id)
+    public function search($id)
     {
         return $this->Client->request('GET', "contacts/{$id}");
     }
@@ -59,7 +88,7 @@ class Contact
      * - updated_field Optional	Update data by : mob|email
      * @return {json}
      */
-    public function create(int $groupId, array $data)
+    public function create($groupId, array $data)
     {
         return $this->Client->request('POST', "groups/{$groupId}/contacts", [], $data);
     }
@@ -80,7 +109,7 @@ class Contact
      * - ind	         Optional	Mobile country code. Ex.: FR|MA|..
      * @return {json}
      */
-    public function modify(int $id, array $data = [])
+    public function modify($id, array $data = [])
     {
         return $this->Client->request('PUT', "contacts/{$id}", $data);
     }
@@ -92,7 +121,7 @@ class Contact
      * @param  {int} $id Contact identifier
      * @return {json}
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         return $this->Client->request('DELETE', "contacts/{$id}");
     }

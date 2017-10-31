@@ -36,7 +36,7 @@ class TemplateGroup
      * @param  {int}  $id   The template group identifier
      * @return {json}
      */
-    public function search(int $id)
+    public function search($id)
     {
         return $this->Client->request('GET', 'objectifs/{$id}');
     }
@@ -64,7 +64,7 @@ class TemplateGroup
      * @param  {string}  $name    The new name of the group
      * @return {json}
      */
-    public function modify(int $id, $name)
+    public function modify($id, $name)
     {
         return $this->Client->request('PUT', 'objectifs/{$id}', [], [
                 $name => $name,
@@ -78,7 +78,7 @@ class TemplateGroup
      * @param  {int} $id The template group identifier
      * @return {json}
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         return $this->Client->request('DELETE', 'objectifs/{$id}');
     }

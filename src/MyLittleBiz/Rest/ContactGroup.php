@@ -33,9 +33,20 @@ class ContactGroup
      * @param  {int} $contacts_group_id Contacts group identifier
      * @return {json}
      */
-    public function search(int $contacts_group_id)
+    public function search($contacts_group_id)
     {
         return $this->Client->request('GET', "groups/{$contacts_group_id}");
+    }
+
+    public function getByName($name)
+    {
+        foreach ($this->fetch()['data'] as $group) {
+            if (strcmp($group['name'], $name) === 0) {
+                return $this->search($group['id']);
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -60,7 +71,7 @@ class ContactGroup
      * @param  {string} [$description=null] Group description
      * @return {json}
      */
-    public function modify(int $id, $name, $description = null)
+    public function modify($id, $name, $description = null)
     {
         return $this->Client->request('PUT', 'groups/{$id}', [], ['name' => $name, 'description' => $description]);
     }
@@ -71,7 +82,7 @@ class ContactGroup
      * @param  {int} $id Contacts group identifier
      * @return {json}
      */
-    public function delete(int $id)
+    public function delete($id)
     {
         return $this->Client->request('DELETE', 'groups/{$id}');
     }
